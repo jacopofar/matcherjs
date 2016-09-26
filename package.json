@@ -4,7 +4,7 @@
   "description": "A fleximatcher porting for node and the browser",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/jacopofar/matcherjs/issues"
   },
-  "homepage": "https://github.com/jacopofar/matcherjs#readme"
+  "homepage": "https://github.com/jacopofar/matcherjs#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
 }
