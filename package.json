@@ -1,6 +1,6 @@
 {
   "name": "matcherjs",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A fleximatcher porting for node and the browser",
   "main": "index.js",
   "scripts": {
