@@ -34,6 +34,7 @@ describe ('pattern parser', function () {
     const spl = matcherjs.parse_pattern(text);
     expect(spl.length).to.equal(7);
     expect(spl[0].text).to.be.equal('this ');
+
     expect(spl[1].text).to.be.equal('[is:another]');
     expect(spl[1].type).to.be.equal('is');
     expect(spl[1].parameter).to.be.equal('another');
@@ -43,7 +44,6 @@ describe ('pattern parser', function () {
     expect(spl[3].text).to.be.equal('[with: parametric parts]');
     expect(spl[3].type).to.be.equal('with');
     expect(spl[3].parameter).to.be.equal(' parametric parts');
-
 
     expect(spl[5].text).to.be.equal('[non]');
     expect(spl[5].type).to.be.equal('non');
