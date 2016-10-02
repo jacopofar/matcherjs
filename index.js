@@ -6,7 +6,7 @@ const charAnnotator = require('./lib/annotators/char');
 const multiAnnotator = require('./lib/annotators/multi');
 const tagAnnotator = require('./lib/annotators/tag');
 
-class Parser {
+class Matcher {
   constructor() {
     this.rules = {
       r: regexAnnotator,
@@ -22,4 +22,4 @@ class Parser {
 }
 
 module.exports.parse_pattern = require('./lib/pattern_parser');
-module.exports.Parser = Parser;
+module.exports.Matcher = Matcher;
