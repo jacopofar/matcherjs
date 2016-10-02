@@ -10,7 +10,6 @@ module.exports = {
   'rules': {
     'array-bracket-spacing': [2, 'never'],
     'brace-style': [2, '1tbs', {      'allowSingleLine': true    }],
-  //  'camelcase': [2, {      'properties': 'never'    }],
     'comma-dangle': [2, 'never'],
     'comma-spacing': [2, {      'before': false,      'after': true    }],
     'comma-style': [2, 'last'],
@@ -52,7 +51,6 @@ module.exports = {
     'eqeqeq': 2,
     'wrap-iife': [2, 'inside'],
     'no-loop-func': 2,
-
     //Ok in dev, not in prod
     'no-console': 1,
   }

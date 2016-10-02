@@ -27,12 +27,15 @@ describe ('presence of built-in annotations', function () {
   it ('case-insensitive annotator annotate case-insensitive strings', function () {
     const matcher = new matcherjs.Matcher();
     const annotator = matcherjs.parse_pattern('[i:a TeXt]')[0];
-    matcher.annotate('this is A TEXT', annotator).then((annotations) => {
+    const text = 'this is A TEXT';
+    return matcher.annotate(text, annotator).then((annotations) => {
       assert(annotations.length === 1, 'there should be exactly 1 annotation, found ' + annotations.length);
-      expect(annotations[0].text).to.be.equal('A TEXT');
+      expect(text.substr(annotations[0].span_start, annotations[0].span_end)).to.be.equal('A TEXT');
       expect(annotations[0].span_start).to.be.equal(8);
       expect(annotations[0].span_end).to.be.equal(14);
       expect(annotations[0].annotation).to.be.undefined;
+    }).catch((err) => {
+      assert(false, 'error in annotator: ' + err);
     });
   });
 });
