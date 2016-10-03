@@ -24,15 +24,29 @@ describe ('presence of built-in annotations', function () {
     expect(matcher.getRule('MULTI')).to.be.undefined;
   });
 
-  it ('case-insensitive annotator annotate case-insensitive strings', function () {
+  it ('case-insensitive annotator annotates case-insensitive strings', function () {
     const matcher = new matcherjs.Matcher();
     const annotator = matcherjs.parse_pattern('[i:a TeXt]')[0];
     const text = 'this is A TEXT';
     return matcher.annotate(text, annotator).then((annotations) => {
       assert(annotations.length === 1, 'there should be exactly 1 annotation, found ' + annotations.length);
-      expect(text.substr(annotations[0].span_start, annotations[0].span_end)).to.be.equal('A TEXT');
+      expect(text.slice(annotations[0].span_start, annotations[0].span_end)).to.be.equal('A TEXT');
       expect(annotations[0].span_start).to.be.equal(8);
       expect(annotations[0].span_end).to.be.equal(14);
+      expect(annotations[0].annotation).to.be.undefined;
+    }).catch((err) => {
+      assert(false, 'error in annotator: ' + err);
+    });
+  });
+  it ('char annotator annotates characters, including surrogate pairs', function () {
+    const matcher = new matcherjs.Matcher();
+    const annotator = matcherjs.parse_pattern('[char:39617]')[0];
+    const text = 'see? 髁 is the character U+9AC1 (39617 in decimal)';
+    return matcher.annotate(text, annotator).then((annotations) => {
+      assert(annotations.length === 1, 'there should be exactly 1 annotation, found ' + annotations.length);
+      expect(text.slice(annotations[0].span_start, annotations[0].span_end)).to.be.equal('髁');
+      expect(annotations[0].span_start).to.be.equal(5);
+      expect(annotations[0].span_end).to.be.equal(6);
       expect(annotations[0].annotation).to.be.undefined;
     }).catch((err) => {
       assert(false, 'error in annotator: ' + err);
